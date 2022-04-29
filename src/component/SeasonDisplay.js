@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 /**
  * 
  * @param {this is the value props latitude passed from the parent component to the child} lat 
@@ -15,19 +16,26 @@ const getSeason = (lat, month) => {
 }
 
 
+
 /**
  * 
- * @param {the lat and long in the parameters are props passed from the parent to the child} param0 
+ * @param {the lat and long in the parameters are props passed from the parent to the child} param
  * @returns this would return the value passed in props from the state updated.
  * getSeason function take two values, 1. the 'lat' which is the latitude props from the parent and the actual month. new Date().getMonth();
  */
 const SeasonDisplay = ({ lat, long }) => {
     const season = getSeason(lat, new Date().getMonth());
-    const text = (season === 'winter' ? 'Wow it chill here' : 'lets head to the beach')
+    //here we are checking the outcome of season to make our judgement of the text to display.
+    const text = season === 'winter' ? 'Wow it chill here' : 'lets head to the beach';
+    const icon = season === 'winter' ? 'snowflake': 'sun';
     return (
+        <>
         <div>
-             <h1>{text}</h1>
-        </div>
+            <i className={`${icon} icon`} />
+                <h1>{text}</h1>
+                <i className={`${icon} icon`}/>
+            </div>
+        </>  
     )
 }
 
