@@ -1,8 +1,9 @@
 import React from 'react';
+import './SeasonDisplay.css';
 
 
 /**
- * 
+ * The styling of this code is don with sementic ui
  * @param {this is the value props latitude passed from the parent component to the child} lat 
  * @param {we are getting the day and the month and comparing it with the latitudde to defind the season} month 
  * @returns 
@@ -15,7 +16,17 @@ const getSeason = (lat, month) => {
     }
 }
 
-
+const seasonConfig = {
+    //here we are checking the outcome of season to make our judgement of the text to display.
+    summer:{
+        text: " Lets go to the beach",
+        iconName: "sun massive"
+    },
+    winter: {
+        text: "Ohh its chilly",
+        iconName: "snowflake massive"
+    }  
+}
 
 /**
  * 
@@ -23,17 +34,16 @@ const getSeason = (lat, month) => {
  * @returns this would return the value passed in props from the state updated.
  * getSeason function take two values, 1. the 'lat' which is the latitude props from the parent and the actual month. new Date().getMonth();
  */
-const SeasonDisplay = ({ lat, long }) => {
+const SeasonDisplay = ({ lat }) => {
     const season = getSeason(lat, new Date().getMonth());
-    //here we are checking the outcome of season to make our judgement of the text to display.
-    const text = season === 'winter' ? 'Wow it chill here' : 'lets head to the beach';
-    const icon = season === 'winter' ? 'snowflake': 'sun';
+    // we are assigning season to seasonConfig this would first call the function season and then return the text and IconName base on the out come of getSeason.
+    const {text, iconName} = seasonConfig[season]
     return (
         <>
-        <div>
-            <i className={`${icon} icon`} />
-                <h1>{text}</h1>
-                <i className={`${icon} icon`}/>
+        <div  className={`season-display ${season}`}>
+            <i className={`icon-left ${iconName} icon`} />
+               <div><h1>{text}</h1></div> 
+                <i className={`icon-buttom-right ${iconName} icon`}/>
             </div>
         </>  
     )

@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react'
 import SeasonDisplay from './component/SeasonDisplay';
+import Loader from './component/loader-spinner/Loader-spinner';
 
 //building an application that tell the weather....
 
@@ -33,7 +34,7 @@ class App extends React.Component{
       if(!this.state.errorMessage && this.state.lat){
           return <div > <SeasonDisplay lat={this.state.lat} long={this.state.long}/> </div> 
       };
-      return <div> Loading ...</div>
+      return <Loader message="Please Allow Access To Your Location" />
  }
  
 }
