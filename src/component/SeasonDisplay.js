@@ -1,5 +1,6 @@
 import React from 'react';
 import './SeasonDisplay.css';
+import Timer from './Timer'
 
 
 /**
@@ -34,7 +35,7 @@ const seasonConfig = {
  * @returns this would return the value passed in props from the state updated.
  * getSeason function take two values, 1. the 'lat' which is the latitude props from the parent and the actual month. new Date().getMonth();
  */
-const SeasonDisplay = ({ lat }) => {
+const SeasonDisplay = ({ lat, time }) => {
     const season = getSeason(lat, new Date().getMonth());
     // we are assigning season to seasonConfig this would first call the function season and then return the text and IconName base on the out come of getSeason.
     const {text, iconName} = seasonConfig[season]
@@ -42,9 +43,10 @@ const SeasonDisplay = ({ lat }) => {
         <>
         <div  className={`season-display ${season}`}>
             <i className={`icon-left ${iconName} icon`} />
-               <div><h1>{text}</h1></div> 
+               <div><h1>{text}</h1>  <Timer /> </div>
                 <i className={`icon-buttom-right ${iconName} icon`}/>
             </div>
+           
         </>  
     )
 }

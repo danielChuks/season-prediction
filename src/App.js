@@ -25,16 +25,21 @@ class App extends React.Component{
           this.setState({errorMessage: err.message})
         },
       )
+
+      }
+//this renderContent function allows us to avoid conditional rendering: here we created a helper function that will take in all our our conditional rendering values then call that function in the render method.
+      renderContent() {
+        if(this.state.errorMessage && !this.state.lat){
+          return <div> <h1>Error: {this.state.errorMessage}</h1></div>
+        };
+        if(!this.state.errorMessage && this.state.lat){
+            return <div > <SeasonDisplay lat={this.state.lat} long={this.state.long}/></div> 
+        };
+        return <Loader message="Please Allow Access To Your Location" />
       }
   
   render(){
-      if(this.state.errorMessage && !this.state.lat){
-        return <div> <h1>Error: {this.state.errorMessage}</h1></div>
-      };
-      if(!this.state.errorMessage && this.state.lat){
-          return <div > <SeasonDisplay lat={this.state.lat} long={this.state.long}/> </div> 
-      };
-      return <Loader message="Please Allow Access To Your Location" />
+        return<div className='boder-red'> {this.renderContent()}</div>
  }
  
 }
